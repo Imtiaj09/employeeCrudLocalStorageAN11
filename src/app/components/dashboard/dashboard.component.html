@@ -1,0 +1,61 @@
+<div class="container mt-5">
+  <div class="row">
+    
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          {{ isEdit ? 'Update Employee' : 'Add New Employee' }}
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label>Name</label>
+              <input type="text" class="form-control" name="name" [(ngModel)]="empObj.name">
+            </div>
+            <div class="mb-3">
+              <label>Email</label>
+              <input type="email" class="form-control" name="email" [(ngModel)]="empObj.email">
+            </div>
+            <div class="mb-3">
+              <label>Salary</label>
+              <input type="number" class="form-control" name="salary" [(ngModel)]="empObj.salary">
+            </div>
+
+            <button *ngIf="!isEdit" type="button" class="btn btn-success" (click)="addEmployee()">Add Employee</button>
+            
+            <button *ngIf="isEdit" type="button" class="btn btn-warning" (click)="updateEmployee()">Update Employee</button>
+            <button *ngIf="isEdit" type="button" class="btn btn-secondary ms-2" (click)="resetForm()">Cancel</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of empList">
+            <td>{{emp.id}}</td>
+            <td>{{emp.name}}</td>
+            <td>{{emp.email}}</td>
+            <td>{{emp.salary}}</td>
+            <td>
+              <button class="btn btn-info btn-sm me-2" (click)="editEmployee(emp)">Edit</button>
+              <button class="btn btn-danger btn-sm" (click)="deleteEmployee(emp)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
